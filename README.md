@@ -59,3 +59,25 @@ Projekti noudattaa vaiheittaista datan jalostusmallia (**Medallion-arkkitehtuuri
 ├── /databricks_notebooks/   # Databricks-koodit (01-99)
 ├── /powerbi_report/         # Power BI -raporttimalli (.pbit)
 └── README.md                # Tämä tiedosto
+```
+
+## Oppeja
+
+### Keskeiset opit
+
+- **Metatiedon ja datan ero:**  
+  Tärkeää on erottaa fyysiset datatiedostot ADLS:ssä ja niiden looginen esitysmuoto (taulu) Unity Catalogissa. `save()` ja `saveAsTable()` ero. PowerBI ei tunnistanut viimeistä Gold-taulua ja jäin joksikin aikaa jumiin tämän takia.
+
+- **Unity Catalogin rooli:**  
+  Ymmärrys siitä, miten Clusterin Access Mode, Storage Credentials ja External Locations toimivat yhdessä turvallisen ja hallitun tiedonhallinnan mahdollistamiseksi. Ylipäänsä näiden oikein konfiguroiminen vaati todella paljon aikaa, kun sen oli tehnyt kerran väärin.
+
+- **Striimin ja eräajon ero:**  
+  Jatkuvasti kuunteleva striimi eroaa kerta-ajosta( `.trigger(availableNow=True)`). Kun tein Databricks-Jobin, jäi ensimmäinen "Ingest"-osio looppaamaan eikä edennyt muihin Medallion-osioihin.
+  
+- **Python ja PySpark:**
+   Tässä projektissa olisi ollut helpompi rakentaa Databricksin notebookit eli Medallion-vaiheet SQL:ää käyttäen. Python tuotti uutena kielenä hankaluuksia, mutta taitaa olla ketterämpi kun eri Pipelinejen kompleksisuus kasvaa.
+  
+
+---
+
+
