@@ -1,0 +1,80 @@
+{
+  "name": "Juho_luvn_demo",
+  "email_notifications": {
+    "no_alert_for_skipped_runs": false
+  },
+  "webhook_notifications": {},
+  "timeout_seconds": 0,
+  "max_concurrent_runs": 1,
+  "tasks": [
+    {
+      "task_key": "Ingest_to_bronze",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<xxxxxx>/<xxxxxx>/01_ingest_autoloader",
+        "source": "WORKSPACE"
+      },
+      "existing_cluster_id": "0808-201344-hc9czd0y",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Bronze_to_silver",
+      "depends_on": [
+        {
+          "task_key": "Ingest_to_bronze"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<xxxxxx>/<xxxxxx>/02_transform_silver",
+        "source": "WORKSPACE"
+      },
+      "existing_cluster_id": "0808-201344-hc9czd0y",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "silver_to_gold",
+      "depends_on": [
+        {
+          "task_key": "Bronze_to_silver"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<xxxxxx>/<xxxxxx>/03_gold_marts",
+        "source": "WORKSPACE"
+      },
+      "existing_cluster_id": "<xxxxxx>",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "data_quality_check",
+      "depends_on": [
+        {
+          "task_key": "silver_to_gold"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/<xxxxxx>/<xxxxxx>/99_dq_tests",
+        "source": "WORKSPACE"
+      },
+      "existing_cluster_id": "0808-201344-hc9czd0y",
+      "timeout_seconds": 0,
+      "email_notifications": {}
+    }
+  ],
+  "queue": {
+    "enabled": true
+  },
+  "performance_target": "STANDARD",
+  "run_as": {
+    "user_name": "<xxxxxx>"
+  }
+}
