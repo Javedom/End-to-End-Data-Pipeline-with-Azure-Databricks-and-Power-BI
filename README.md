@@ -1,6 +1,6 @@
-# End-to-End Data Pipeline with Azure Databricks and Power BI
+# End-to-End Data Pipeline: Azure Databricks ja Power BI
 
-Tämä projekti demonstroi modernin datan käsittelyputken rakentamista Azure-pilvipalveluilla. Projekti kattaa datan inkrementaalisen latauksen, puhdistuksen **Medallion-arkkitehtuurin** mukaisesti ja lopputulosten visualisoinnin Power BI:llä.
+Tämä projekti demonstroi datakäsittelyputken rakentamista Azure-pilvipalveluilla. Projekti kattaa datan (inkrementaalisen) latauksen, puhdistuksen **Medallion-arkkitehtuurin** mukaisesti ja lopputulosten visualisoinnin Power BI:llä.
 
 Projektin ytimessä ovat **Azure Databricks**, **Delta Lake** ja **Unity Catalog**, jotka yhdessä muodostavat skaalautuvan, luotettavan ja hallitun data-alustan.
 
@@ -51,15 +51,6 @@ Projekti noudattaa vaiheittaista datan jalostusmallia (**Medallion-arkkitehtuuri
 
 ---
 
-## Projektin rakenne
-
-```plaintext
-.
-├── /architecture/           # Arkkitehtuurikaaviot (Mermaid)
-├── /databricks_notebooks/   # Databricks-koodit (01-99)
-├── /powerbi_report/         # Power BI -raporttimalli (.pbit)
-└── README.md                # Tämä tiedosto
-```
 
 ## Oppeja
 
